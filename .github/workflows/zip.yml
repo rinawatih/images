@@ -17,14 +17,11 @@ jobs:
         run: zip -r hary.zip .
 
       - name: Commit and push zip file
-        uses: gitHub-script@v6
-        with:
-          script: |
-            const { exec } = require('@actions/exec');
-            await exec('git', ['config', '--global', 'user.name', 'GitHub Actions']);
-            await exec('git', ['config', '--global', 'user.email', 'actions@github.com']);
-            await exec('git', ['add', 'hary.zip']);
-            await exec('git', ['commit', '-m', 'Add hary.zip']);
-            await exec('git', ['push']);
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add hary.zip
+          git commit -m "Add hary.zip"
+          git push origin rina
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
