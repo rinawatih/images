@@ -1,9 +1,10 @@
 name: Zip Repository
 
 on:
+  workflow_dispatch:  # Memungkinkan menjalankan workflow secara manual
   push:
     branches:
-      - main  # Ganti dengan nama branch Anda
+      - rina  # Ganti dengan nama branch Anda
 
 jobs:
   zip-repo:
