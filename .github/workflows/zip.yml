@@ -1,4 +1,4 @@
-name: HARY-IT
+name: Zip Repository
 
 on:
   workflow_dispatch:
