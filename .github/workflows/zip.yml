@@ -1,10 +1,10 @@
 name: Zip Repository
 
 on:
-  workflow_dispatch:  # Memungkinkan menjalankan workflow secara manual
+  workflow_dispatch:
   push:
     branches:
-      - rina  # Ganti dengan nama branch Anda
+      - rina
 
 jobs:
   zip-repo:
@@ -16,8 +16,11 @@ jobs:
       - name: Compress files
         run: zip -r hary.zip .
 
-      - name: Upload zip file
-        uses: actions/upload-artifact@v3
+      - name: Commit and push zip file
+        uses: EndBug/add-and-commit@v9
         with:
-          name: hary.zip
-          path: hary.zip
+          add: 'hary.zip'
+          message: 'Add hary.zip'
+          branch: rina
+          author_name: GitHub Actions
+          author_email: actions@github.com
