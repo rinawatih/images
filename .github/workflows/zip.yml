@@ -1,4 +1,4 @@
-name: Zip Repository
+name: HARY-IT
 
 on:
   workflow_dispatch:
@@ -17,10 +17,14 @@ jobs:
         run: zip -r hary.zip .
 
       - name: Commit and push zip file
-        uses: EndBug/add-and-commit@v9
+        uses: gitHub-script@v6
         with:
-          add: 'hary.zip'
-          message: 'Add hary.zip'
-          branch: rina
-          author_name: GitHub Actions
-          author_email: actions@github.com
+          script: |
+            const { exec } = require('@actions/exec');
+            await exec('git', ['config', '--global', 'user.name', 'GitHub Actions']);
+            await exec('git', ['config', '--global', 'user.email', 'actions@github.com']);
+            await exec('git', ['add', 'hary.zip']);
+            await exec('git', ['commit', '-m', 'Add hary.zip']);
+            await exec('git', ['push']);
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
