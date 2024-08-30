@@ -1,0 +1,22 @@
+name: Zip Repository
+
+on:
+  push:
+    branches:
+      - main  # Ganti dengan nama branch Anda
+
+jobs:
+  zip-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Compress files
+        run: zip -r hary.zip .
+
+      - name: Upload zip file
+        uses: actions/upload-artifact@v3
+        with:
+          name: hary.zip
+          path: hary.zip
